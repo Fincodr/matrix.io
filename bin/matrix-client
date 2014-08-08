@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+'use strict';
+
+/*
+
+Copyright (C) 2014  Mika "Fincodr" Luoma-aho
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+*/
+
+var Matrix    = require('../lib/matrixio/Matrix'),
+    util 			= require('util'),
+    parseArgs = require('minimist');
+
+var args = process.argv.slice(2);
+
+var parsedArgs = parseArgs(args);
+
+var endpoint_list = parsedArgs.endpoint?parsedArgs.endpoint:[ 'http://127.0.0.1:33301' ]
+if (!util.isArray(endpoint_list)) {
+	endpoint_list = [ endpoint_list ];
+}
+var connection_list = parsedArgs.connection?parsedArgs.connection:[];
+if (!util.isArray(connection_list)) {
+	connection_list = [ connection_list ];
+}
+
+var options = {
+	banner: parsedArgs.banner?parsedArgs.banner:true,
+	console: parsedArgs.console?parsedArgs.console:true,
+	debug: parsedArgs.debug?parsedArgs.debug:false,
+	colors: parsedArgs.colors?parsedArgs.console:true,
+	identity: {
+	  name: parsedArgs.name?parsedArgs.name:'Matrix',
+	  datacenter: parsedArgs.datacenter?parsedArgs.datacenter:0,
+	  worker: parsedArgs.worker?parsedArgs.worker:process.pid,
+	},
+	endpoints: endpoint_list,
+	connections: connection_list
+};
+
+var matrix = new Matrix(options);
+
