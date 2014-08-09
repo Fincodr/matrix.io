@@ -49,6 +49,7 @@ var options = {
 	},
 	ssl_key: parsedArgs.key?parsedArgs.key:'./server.key',
 	ssl_cert: parsedArgs.cert?parsedArgs.cert:'./server.cert',
+	channel: parsedArgs.channel?parsedArgs.channel:'matrix::message',
 	endpoints: endpoint_list,
 	connections: connection_list
 };
