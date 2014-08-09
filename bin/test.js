@@ -4,7 +4,7 @@ var Matrix = require('../lib/matrixio/Matrix');
 var node1 = new Matrix({
 	banner: true,
 	console: true,
-	debug: true,
+	debug: false,
 	colors: true,
 	identity: {
 		name: 'Matrix 1',
@@ -22,7 +22,7 @@ var node1 = new Matrix({
 
 var node2 = new Matrix({
 	banner: false,
-	debug: true,
+	debug: false,
 	colors: true,
 	ssl_key: './server.key',
 	ssl_cert: './server.cert',
@@ -42,7 +42,7 @@ var node2 = new Matrix({
 
 var node3 = new Matrix({
 	banner: false,
-	debug: true,
+	debug: false,
 	colors: true,
 	identity: {
 		name: 'Matrix 3',

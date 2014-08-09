@@ -3,7 +3,7 @@ var Matrix = require('../lib/matrixio/Matrix');
 
 var node2 = new Matrix({
 	banner: true,
-	debug: true,
+	debug: false,
 	colors: true,
 	console: true,
 	ssl_key: './server.key',

@@ -3,7 +3,7 @@ var Matrix = require('../lib/matrixio/Matrix');
 
 var node3 = new Matrix({
 	banner: true,
-	debug: true,
+	debug: false,
 	colors: true,
 	console: true,
 	identity: {
