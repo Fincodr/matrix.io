@@ -47,6 +47,8 @@ var options = {
 	  datacenter: parsedArgs.datacenter?parsedArgs.datacenter:0,
 	  worker: parsedArgs.worker?parsedArgs.worker:process.pid,
 	},
+	ssl_key: parsedArgs.key?parsedArgs.key:'./server.key',
+	ssl_cert: parsedArgs.cert?parsedArgs.cert:'./server.cert',
 	endpoints: endpoint_list,
 	connections: connection_list
 };
