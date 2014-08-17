@@ -28,8 +28,8 @@ var args = process.argv.slice(2);
 
 var parsedArgs = parseArgs(args);
 
-var endpoint_list = parsedArgs.endpoint?parsedArgs.endpoint:[ 'http://127.0.0.1:33301' ]
-if (!util.isArray(endpoint_list)) {
+var endpoint_list = parsedArgs.endpoint?parsedArgs.endpoint:null;
+if (endpoint_list && !util.isArray(endpoint_list)) {
 	endpoint_list = [ endpoint_list ];
 }
 var connection_list = parsedArgs.connection?parsedArgs.connection:[];
@@ -51,7 +51,8 @@ var options = {
 	ssl_cert: parsedArgs.cert?parsedArgs.cert:'./server.cert',
 	channel: parsedArgs.channel?parsedArgs.channel:'matrix::message',
 	endpoints: endpoint_list,
-	connections: connection_list
+	connections: connection_list,
+	mdns: parsedArgs.mdns?parsedArgs.mdns:false
 };
 
 var matrix = new Matrix(options);

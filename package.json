@@ -14,15 +14,18 @@
   "author": "Mika \"Fincodr\" Luoma-aho",
   "license": "private",
   "dependencies": {
-    "lodash": "~2.4.1",
+    "avahi": "0.0.1",
+    "biguint-format": "~0.2.1",
+    "colors2": "~2.0.1-1",
     "engine.io": "~1.3.1",
     "engine.io-client": "~1.3.1",
-    "colors2": "~2.0.1-1",
-    "util": "~0.10.3",
-    "flake-idgen": "~0.1.3",
-    "biguint-format": "~0.2.1",
     "eventemitter2": "~0.4.14",
+    "flake-idgen": "~0.1.3",
     "hashmap": "~1.1.0",
-    "minimist": "~0.2.0"
+    "lodash": "~2.4.1",
+    "mdns2": "^2.1.4",
+    "minimist": "~0.2.0",
+    "portfinder": "~0.2.1",
+    "util": "~0.10.3"
   }
 }
