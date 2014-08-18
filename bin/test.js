@@ -58,14 +58,12 @@ var node3 = new Matrix({
 	]
 });
 
-/*
-node1.on('node::connect', function(connection){
+node2.on('matrix::message', function(msg){
 	var self = this;
-	setTimeout(function(){
-		self.broadcast('hello', { 'me': 'node1', 'msg': 'hello there node2 and node3' });
-	}, 1000);
-})
+	console.log('Message from matrix: ', msg);
+});
 
+/*
 node2.on('node::connect', function(connection){
 	this.on('hello', function(data){
 		if (data.msg !== 'you too!') {
