@@ -5,7 +5,7 @@ function Client() {
   var self = this;
 
   self.endpoint = {
-    address: 'http://localhost:44444'
+    address: 'http://mxl.fi:44444'
   };
 
   self.socket = cio(self.endpoint.address);
