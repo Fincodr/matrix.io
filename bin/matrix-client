@@ -78,6 +78,12 @@ if (parsedArgs.log) {
 	};
 }
 
+if (parsedArgs.debug) {
+	if (!parsedArgs.loglevel) {
+		parsedArgs.loglevel = 'verbose';
+	}
+}
+
 if (parsedArgs.loglevel) {
 	options.logging = {
 		transports: {
