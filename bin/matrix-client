@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-'use strict';
 /*global require, process*/
 
 /*
@@ -21,78 +20,83 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-var Matrix    = require('../lib/matrixio/Matrix'),
-    util      = require('util'),
-    parseArgs = require('minimist');
+(function(){
+	'use strict';
 
-var args = process.argv.slice(2);
+	var Matrix    = require('../lib/matrixio/Matrix'),
+			util      = require('util'),
+			parseArgs = require('minimist');
 
-var parsedArgs = parseArgs(args);
+	var args = process.argv.slice(2);
 
-var endpoint_list = parsedArgs.endpoint?parsedArgs.endpoint:null;
-if (endpoint_list && !util.isArray(endpoint_list)) {
-	endpoint_list = [ endpoint_list ];
-}
-var connection_list = parsedArgs.connection?parsedArgs.connection:[];
-if (!util.isArray(connection_list)) {
-	connection_list = [ connection_list ];
-}
+	var parsedArgs = parseArgs(args);
 
-function convertToBoolean(s) {
-	if (s==='true' || s===true) {
-		return true;
-	} else {
-		return false;
+	var endpoint_list = parsedArgs.endpoint?parsedArgs.endpoint:null;
+	if (endpoint_list && !util.isArray(endpoint_list)) {
+		endpoint_list = [ endpoint_list ];
 	}
-}
-
-var options = {
-	banner: parsedArgs.banner?convertToBoolean(parsedArgs.banner):true,
-	console: parsedArgs.console?convertToBoolean(parsedArgs.console):true,
-	debug: parsedArgs.debug?convertToBoolean(parsedArgs.debug):false,
-	colors: parsedArgs.colors?convertToBoolean(parsedArgs.colors):true,
-	showuid: parsedArgs.showuid?convertToBoolean(parsedArgs.showuid):false,
-	identity: {
-		name: parsedArgs.name?parsedArgs.name:null,
-		datacenter: parsedArgs.datacenter?parsedArgs.datacenter:0,
-		worker: parsedArgs.worker?parsedArgs.worker:process.pid,
-	},
-	ssl: parsedArgs.ssl?convertToBoolean(parsedArgs.ssl):false,
-	ssl_key: parsedArgs.key?parsedArgs.key:'./server.key',
-	ssl_cert: parsedArgs.cert?parsedArgs.cert:'./server.cert',
-	event: parsedArgs.event?parsedArgs.event:'matrix::global',
-	endpoints: endpoint_list,
-	connections: connection_list,
-	mdns: parsedArgs.mdns?convertToBoolean(parsedArgs.mdns):false,
-	register: parsedArgs.register?convertToBoolean(parsedArgs.register):true,
-	discover: parsedArgs.discover?convertToBoolean(parsedArgs.discover):true,
-};
-
-if (parsedArgs.log) {
-	options.logging = {
-		transports: {
-			'File': {
-				filename: parsedArgs.log
-			}
-		}
-	};
-}
-
-if (parsedArgs.debug) {
-	if (!parsedArgs.loglevel) {
-		parsedArgs.loglevel = 'verbose';
+	var connection_list = parsedArgs.connection?parsedArgs.connection:[];
+	if (!util.isArray(connection_list)) {
+		connection_list = [ connection_list ];
 	}
-}
 
-if (parsedArgs.loglevel) {
-	options.logging = {
-		transports: {
-			'Console': {
-				level: parsedArgs.loglevel
-			}
+	function convertToBoolean(s) {
+		if (s==='true' || s===true) {
+			return true;
+		} else {
+			return false;
 		}
-	};
-}
+	}
 
-var matrix = new Matrix(options);
+	var options = {
+		banner: parsedArgs.banner?convertToBoolean(parsedArgs.banner):true,
+		console: parsedArgs.console?convertToBoolean(parsedArgs.console):true,
+		debug: parsedArgs.debug?convertToBoolean(parsedArgs.debug):false,
+		colors: parsedArgs.colors?convertToBoolean(parsedArgs.colors):true,
+		showuid: parsedArgs.showuid?convertToBoolean(parsedArgs.showuid):false,
+		identity: {
+			name: parsedArgs.name?parsedArgs.name:null,
+			datacenter: parsedArgs.datacenter?parsedArgs.datacenter:0,
+			worker: parsedArgs.worker?parsedArgs.worker:process.pid,
+		},
+		ssl: parsedArgs.ssl?convertToBoolean(parsedArgs.ssl):false,
+		ssl_key: parsedArgs.key?parsedArgs.key:'./server.key',
+		ssl_cert: parsedArgs.cert?parsedArgs.cert:'./server.cert',
+		event: parsedArgs.event?parsedArgs.event:'matrix::global',
+		endpoints: endpoint_list,
+		connections: connection_list,
+		mdns: parsedArgs.mdns?convertToBoolean(parsedArgs.mdns):false,
+		register: parsedArgs.register?convertToBoolean(parsedArgs.register):true,
+		discover: parsedArgs.discover?convertToBoolean(parsedArgs.discover):true,
+	};
+
+	if (parsedArgs.log) {
+		options.logging = {
+			transports: {
+				'File': {
+					filename: parsedArgs.log
+				}
+			}
+		};
+	}
+
+	if (parsedArgs.debug) {
+		if (!parsedArgs.loglevel) {
+			parsedArgs.loglevel = 'verbose';
+		}
+	}
+
+	if (parsedArgs.loglevel) {
+		options.logging = {
+			transports: {
+				'Console': {
+					level: parsedArgs.loglevel
+				}
+			}
+		};
+	}
+
+	var matrix = new Matrix(options);
+})();
+
 
