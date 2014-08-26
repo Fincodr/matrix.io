@@ -60,7 +60,7 @@ var options = {
 	ssl: parsedArgs.ssl?convertToBoolean(parsedArgs.ssl):false,
 	ssl_key: parsedArgs.key?parsedArgs.key:'./server.key',
 	ssl_cert: parsedArgs.cert?parsedArgs.cert:'./server.cert',
-	channel: parsedArgs.channel?parsedArgs.channel:'matrix::global',
+	event: parsedArgs.event?parsedArgs.event:'matrix::global',
 	endpoints: endpoint_list,
 	connections: connection_list,
 	mdns: parsedArgs.mdns?convertToBoolean(parsedArgs.mdns):false,
@@ -75,7 +75,7 @@ if (parsedArgs.log) {
 				filename: parsedArgs.log
 			}
 		}
-	}
+	};
 }
 
 if (parsedArgs.loglevel) {
@@ -85,7 +85,7 @@ if (parsedArgs.loglevel) {
 				level: parsedArgs.loglevel
 			}
 		}
-	}
+	};
 }
 
 var matrix = new Matrix(options);
