@@ -67,6 +67,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		connections: connection_list,
 		mdns: parsedArgs.mdns?convertToBoolean(parsedArgs.mdns):false,
 		register: parsedArgs.register?convertToBoolean(parsedArgs.register):true,
+		registerlocal: parsedArgs.registerlocal?convertToBoolean(parsedArgs.registerlocal):false,
 		discover: parsedArgs.discover?convertToBoolean(parsedArgs.discover):true,
 	};
 
